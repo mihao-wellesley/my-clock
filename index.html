@@ -2,11 +2,12 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>極簡時鐘</title>
+    <title>極簡時鐘 - 透明描邊版</title>
     <style>
         body {
-            background-color: #000; /* 背景色 */
-            color: #ffffff;         /* 字體顏色 */
+            /* 背景設為透明 */
+            background-color: transparent; 
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -14,22 +15,30 @@
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica;
             font-weight: bold;
+            /* 隱藏捲軸防止溢出 */
+            overflow: hidden; 
         }
 
         .container {
             text-align: center;
-            border: 1px solid #000; /* 對應你的 borderSize & border 參數 */
             padding: 20px;
+            /* 使用多層 text-shadow 產生黑色描邊效果 */
+            text-shadow: 
+                -2px -2px 0 #000,  
+                 2px -2px 0 #000,
+                -2px  2px 0 #000,
+                 2px  2px 0 #000,
+                 0px  3px 5px rgba(0,0,0,0.5); /* 額外增加一點陰影增加立體感 */
         }
 
         #date {
-            font-size: 10vw; /* 對應你的 dateSize 參數 */
+            font-size: 10vw; 
             margin-bottom: 10px;
         }
 
         #time {
-            font-size: 15vw;  /* 時鐘主體大小 */
-            line-height: 1;
+            font-size: 15vw;
+            line-height: 1.1;
         }
     </style>
 </head>
@@ -44,26 +53,22 @@
         function updateClock() {
             const now = new Date();
 
-            // 處理日期 (2-digit year, numeric month/day)
             const year = String(now.getFullYear()).slice(-2);
             const month = now.getMonth() + 1;
             const date = now.getDate();
             const dayNames = ['日', '一', '二', '三', '四', '五', '六'];
             const day = dayNames[now.getDay()];
 
-            // 處理時間 (24h 格式)
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
 
-            // 渲染到網頁
             document.getElementById('date').textContent = `${year}/${month}/${date} (${day})`;
             document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`;
         }
 
-        // 每秒更新一次
         setInterval(updateClock, 1000);
-        updateClock(); // 初始化
+        updateClock();
     </script>
 </body>
 </html>
