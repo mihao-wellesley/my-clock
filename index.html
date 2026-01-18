@@ -2,43 +2,45 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>極簡時鐘 - 透明描邊版</title>
+    <title>極簡時鐘 - 透明左對齊版</title>
     <style>
         body {
-            /* 背景設為透明 */
             background-color: transparent; 
             color: #ffffff;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            /* 讓容器在畫面中靠左上 */
+            justify-content: flex-start;
+            align-items: flex-start;
             height: 100vh;
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica;
             font-weight: bold;
-            /* 隱藏捲軸防止溢出 */
             overflow: hidden; 
         }
 
         .container {
-            text-align: center;
-            padding: 20px;
-            /* 使用多層 text-shadow 產生黑色描邊效果 */
+            /* 文字靠左對齊 */
+            text-align: left;
+            padding: 40px; /* 增加邊距讓文字不貼邊 */
             text-shadow: 
                 -2px -2px 0 #000,  
                  2px -2px 0 #000,
                 -2px  2px 0 #000,
-                 2px  2px 0 #000,
-                 0px  3px 5px rgba(0,0,0,0.5); /* 額外增加一點陰影增加立體感 */
+                 2px  2px 0 #000;
         }
 
         #date {
-            font-size: 10vw; 
-            margin-bottom: 10px;
+            font-size: 8vw; 
+            margin-bottom: 5px;
+            /* 修正文字間距讓對齊更精準 */
+            margin-left: -0.5vw; 
         }
 
         #time {
             font-size: 15vw;
-            line-height: 1.1;
+            line-height: 1;
+            /* 修正首位數字的左側微小空白，讓視覺上更靠左 */
+            margin-left: -0.8vw; 
         }
     </style>
 </head>
